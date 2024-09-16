@@ -1,13 +1,300 @@
+/* General styles */
 body {
+  font-family: 'Poppins', sans-serif;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed; /* Fixes the navbar at the top of the page */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  padding: 20px 50px; /* Adjust the padding for some space on the sides */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10; /* Keeps the navbar above other content */
+  background-color: rgba(0, 0, 0, 0.8); /* Slight transparency for a nice effect */
+  box-sizing: border-box; /* Ensures padding is included in width calculation */
+  overflow: hidden; /* Prevents contents from overflowing */
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin-left: 30px; /* Add space between the items */
+}
+
+.nav-links li a {
+  font-size: 1rem;
+  color: #aaa;
+  text-decoration: none;
+  white-space: nowrap; /* Prevent text from breaking into multiple lines */
+}
+
+.nav-links li a:hover {
+  color: #c58bfc; /* Change color on hover */
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links li {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+
+
+/* Hero Section */
+
+.hero-overlay {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center; /* Center the content vertically */
+  padding: 0 20%; /* Remove top and bottom padding, only side padding */
+  background-color: #000; /* Black background */
+  min-height: 100vh; /* Full screen height */
+  text-align: left; /* Center text inside the content */
+}
+
+.hero-content {
+  max-width: 500px;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  color: #c58bfc;
+}
+
+.name {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+/* Styling for profession section */
+.profession {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  border-right: 2px solid #fff; /* Blinking cursor effect */
+  white-space: nowrap;
+  overflow: hidden; /* Hide the text that's not been typed yet */
+  width: 0; /* Start with 0 width */
+  animation: typewriter 3s steps(30) 1s 1 normal forwards, blink 0.75s step-end infinite; /* Animation for typing effect */
+}
+
+/* Keyframes for the typewriter effect */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Keyframes for the blinking cursor */
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
+}
+
+
+.hero-button {
+  background-color: #c58bfc;
+  color: #000;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background-color: #9d68d6;
+}
+
+.hero-image img {
+  max-width: 400px;
+  border-radius: 50%;
+}
+
+
+
+
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.social-icons a {
+  margin: 0 15px;
+  color: #aaa;
+}
+
+.social-icons a:hover {
+  color: #c58bfc;
+}
+
+
+
+/* About Section with Full Height Background Image */
+/* About Section */
+.about-section {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 100px;
+  background-color: #222020; /* Grey background */
+  overflow: hidden;
+  min-height: 100vh; /* Full viewport height */
+  font-family: 'Poppins', sans-serif; /* Restore the Poppins font */
+}
+
+/* Slide from left animation for about content */
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-25%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide from right animation for about image */
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(25%);
+    opacity: 0;
+    filter: grayscale(100%); /* Start in grayscale */
+  }
+  50% {
+    filter: grayscale(50%); /* Gradually reduce grayscale halfway */
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    filter: grayscale(0%); /* Fully colored at the end */
+  }
+}
+
+.about-content {
+  position: relative;
+  max-width: 50%;
+  z-index: 1;
+  color: white;
+  opacity: 0; /* Initially hidden */
+  transform: translateX(-100%); /* Start off-screen */
+  font-size: 1.2rem; /* Restore text size */
+  line-height: 1.8; /* Ensure good readability */
+}
+
+.about-heading {
+  color: #c58bfc; /* Highlighted color for heading */
+  font-size: 2.5rem; /* Restore heading size */
+  margin-bottom: 20px; /* Add margin below the heading */
+  font-weight: 700; /* Bold weight for the heading */
+}
+
+.about-content p {
+  font-size: 1.2rem; /* Restore paragraph font size */
+  line-height: 1.8; /* Restore line height */
+  color: #ddd; /* Light grey text */
+}
+
+.about-content p span {
+  color: #f4a261; /* Highlight color for important terms */
+  font-weight: bold;
+}
+
+.about-section.visible .about-content {
+  animation: slideFromLeft 1s ease-out forwards; /* Trigger animation */
+}
+
+/* Animation for the about image */
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%; /* Adjust as per image size */
+  height: 100%;
+  background-image: url('./assets/aboutImage2.png'); /* Background image */
+  background-size: contain;
+  background-position: top right;
+  background-repeat: no-repeat;
+  opacity: 0; /* Initially hidden */
+  transform: translateX(100%); /* Start off-screen */
+  margin-top: 40px;
+}
+
+.about-section.visible::before {
+  animation: slideFromRight 1s ease-out forwards; /* Trigger animation */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 50px;
+  }
+
+  .about-section::before {
+    width: 100%;
+    height: 50%;
+    background-position: top right;
+  }
+
+  .about-content {
+    max-width: 100%;
+    font-size: 1.1rem; /* Slightly smaller font size for mobile */
+  }
+
+  .about-heading {
+    font-size: 2rem; /* Adjust heading size for mobile */
+  }
 }
